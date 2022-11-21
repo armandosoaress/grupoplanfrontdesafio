@@ -144,8 +144,7 @@ export const Home = () => {
         </div>
 
       </div>
-
-      <div>
+      <div className='tt'>
         <table>
           <tr>
             <th>ID</th>
