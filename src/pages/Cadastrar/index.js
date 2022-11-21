@@ -28,7 +28,7 @@ export const Cadastrar = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ produto })
+      body: JSON.stringify(produto)
     })
       .then((response) => response.json())
       .then((responseJson) => {
