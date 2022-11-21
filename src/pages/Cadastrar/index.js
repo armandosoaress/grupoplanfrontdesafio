@@ -58,9 +58,11 @@ export const Cadastrar = () => {
         <ConteudoTitulo>
           <Titulo>Cadastrar</Titulo>
           <BotaoAcao>
-            <Link to="/">
-              <ButtonInfo>Eletrodomésticos</ButtonInfo>
-            </Link>
+          <Link to="/">
+            <button class="button button--nanuk button--round-l button--text-thick button--inverted">
+            📓 <span>L</span><span>I</span><span>S</span><span>T</span><span>A</span><span>R</span>
+            </button>
+          </Link>
           </BotaoAcao>
         </ConteudoTitulo>
 

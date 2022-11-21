@@ -26,14 +26,25 @@ export const Home = () => {
         localStorage.setItem('anterior', responseJson.Anterior),
         localStorage.setItem('atual', responseJson.npagina),
         localStorage.setItem('ultima', responseJson.nTotpagina),
-        setData(responseJson.records),
-        setTotpage(responseJson.nTotpagina)
-
+        insertgetProdutos(responseJson)
       ));
   }
 
-  const getProdutospage = async (page) => {
+  const insertgetProdutos = async (responseJson) => {
+    if (responseJson.message == "página não disponível") {
+      setData([
+        { nome: 'Nenhum registro encontrado' }
+      ])
+      var b = document.getElementById("b")
+      b.style.display = "none"
+    } else {
+      setData(responseJson.records);
+      setTotpage(responseJson.nTotpagina);
+    }
 
+  }
+
+  const getProdutospage = async (page) => {
     if (page == "https://www.armandosoares.com.br/grupoplan/api/produtos?page=1") {
       var botao1 = document.getElementById("anterior")
       botao1.style.display = "none"
@@ -48,14 +59,15 @@ export const Home = () => {
         localStorage.setItem('anterior', responseJson.Anterior),
         localStorage.setItem('atual', responseJson.npagina),
         localStorage.setItem('ultima', responseJson.nTotpagina),
+
         setData(responseJson.records),
+
         teste2(responseJson.npagina)
       )
       );
   }
 
   function teste2(x) {
-
     if (x == localStorage.getItem('ultima')) {
       var botao2 = document.getElementById("proxima")
       botao2.style.display = "none"
@@ -122,8 +134,8 @@ export const Home = () => {
 
       <center><h2 className='crud'>Crud eletrodomestico</h2></center>
       <div class="grid-container">
-    
-      <div>
+
+        <div>
           <Link to="/Seach">
             <button class="button button--nanuk button--round-l button--text-thick button--inverted">
               🔎 <span>P</span><span>E</span><span>S</span><span>Q</span><span>U</span><span>I</span><span>S</span><span>A</span><span>R</span>
@@ -132,7 +144,7 @@ export const Home = () => {
         </div>
 
       </div>
-      
+
       <div>
         <table>
           <tr>
@@ -151,7 +163,7 @@ export const Home = () => {
                 <td>{produto.tensao}</td>
                 <td>{produto.marca}</td>
                 <td>
-                  <ul>
+                  <ul id='b'>
                     <li><Link to={"/visualizar/" + produto.id}>
                       <button class="button button--moema button--inverted button--text-thick button--size-s">
                         <span>V</span><span>i</span><span>z</span><span>u</span><span>a</span><span>l</span><span>i</span><span>z</span><span>a</span><span>r</span>
@@ -175,7 +187,7 @@ export const Home = () => {
         </table>
       </div>
       <div class="grid-container">
-      <div>
+        <div>
           <Link to="/cadastrar">
             <button class="button button--nanuk button--round-l button--text-thick button--inverted">
               ➕ <span>C</span><span>A</span><span>D</span><span>A</span><span>S</span><span>T</span><span>R</span><span>A</span><span>R</span>
